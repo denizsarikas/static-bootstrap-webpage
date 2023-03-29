@@ -3,15 +3,13 @@ import { useEffect } from 'react';
 import './App.css';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 //components
+import Home from './pages/Home';
+import Products from './pages/Products';
 import Topbar from './components/Topbar';
 import Header from './components/Header';
-import Hero from './components/Hero';
-import CTA from './components/CTA';
-import About from './components/About';
-import Contact from './components/Contact';
 import Footer from './components/Footer';
-import Clients from './components/Clients';
 
 
 
@@ -24,17 +22,24 @@ function App() {
   }, []);
 
   return (
-    <div>
-      <Topbar />
-      <Header />
-      <Hero />
-      <CTA />
-      <Clients />
-      <About />
-      <Contact />
-      <Footer />
-   
-
+    <div className="App">
+      <BrowserRouter>
+        <Topbar />
+        <Header />
+        <div className="pages">
+          <Routes>
+            <Route 
+              path="/"
+              element={ <Home />}
+            />
+            <Route 
+              path="/products"
+              element={ <Products />}
+            />
+          </Routes>
+        </div>
+        <Footer />
+      </BrowserRouter>
     </div>
   );
 }
